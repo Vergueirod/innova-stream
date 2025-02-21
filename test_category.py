@@ -1,8 +1,10 @@
 import unittest
+import uuid
+from uuid import UUID, uuid4
 from category import Category
-from uuid import UUID
 
 class TestCategory(unittest.TestCase):
+
     def test_name_is_required(self):
         with self.assertRaisesRegex(TypeError, "missing 1 required positional argument: 'name'"):
             Category()
@@ -19,8 +21,23 @@ class TestCategory(unittest.TestCase):
         category = Category(name="Move")
         self.assertEqual(category.name,"Move")
         self.assertEqual(category.description,"")
+        
+    def test_created_category_is_active_by_default(self):
+        category = Category(name="Move")
         self.assertEqual(category.is_active, True)
 
+    def test_category_is_created_with_provided_values(self):
+        cat_id = uuid.uuid4()
+        category = Category(
+            id=cat_id,
+            name="move",
+            description="All moves",
+            is_active=False
+        )
+        self.assertEqual(category.id, cat_id)
+        self.assertEqual(category.name,"Move")
+        self.assertEqual(category.description,"All moves")
+        self.assertEqual(category.is_active, False)
     
 
 if __name__ == "__main__":
