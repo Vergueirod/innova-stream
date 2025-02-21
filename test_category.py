@@ -15,5 +15,13 @@ class TestCategory(unittest.TestCase):
         category = Category(name="Move")
         self.assertEqual(type(category.id), UUID)
 
+    def test_created_category_with_default_values(self):
+        category = Category(name="Move")
+        self.assertEqual(category.name,"Move")
+        self.assertEqual(category.description,"")
+        self.assertEqual(category.is_active, True)
+
+    
+
 if __name__ == "__main__":
     unittest.main()
