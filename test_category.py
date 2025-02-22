@@ -3,7 +3,7 @@ import uuid
 from uuid import UUID, uuid4
 from category import Category
 
-class TestCategory(unittest.TestCase):
+class TestCategory:
 
     def test_name_is_required(self):
         with pytest.raises(TypeError, match="missing 1 required positional argument: 'name'"):
