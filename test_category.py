@@ -38,7 +38,11 @@ class TestCategory:
         assert category.id == cat_id
         assert category.name == "Move"
         assert category.description == "All moves"
-        assert category.is_active == False    
+        assert category.is_active == False 
+
+    def test_cannot_create_category_with_empty_name(self):
+        with pytest.raises(ValueError, match="name must have less than 256 characters"):
+            Category(name="")   
 
 class TestUpdateCategory:
     def test_update_category_with_name_and_description(self):
@@ -54,3 +58,53 @@ class TestUpdateCategory:
 
         with pytest.raises(ValueError, match="name must have less than 256 characters"):
             category.update_category(name="a" * 256, description="All moves")
+
+    def test_cannot_update_category_with_empty_name(self):
+        with pytest.raises(ValueError, match="name must have less than 256 characters"):
+            Category(name="")   
+
+class TestActivate:
+    def test_activate_inactive_category(self):
+        category = Category(
+            name="Move", 
+            description="All moves",
+            is_active = False,
+            )
+
+        category.activate()
+
+        assert category.is_active is True
+
+    def test_activate_active_category(self):
+        category = Category(
+            name="Move", 
+            description="All moves",
+            is_active = True,
+            )
+
+        category.activate()
+
+        assert category.is_active is True
+
+class TestDesactivate:
+    def test_inactivate_inactive_category(self):
+        category = Category(
+            name="Move", 
+            description="All moves",
+            is_active = False,
+            )
+
+        category.desactivateactivate()
+
+        assert category.is_active is True
+
+    def test_inactivate_activate_category(self):
+        category = Category(
+            name="Move", 
+            description="All moves",
+            is_active = True,
+            )
+
+        category.desactivate()
+
+        assert category.is_active is True
