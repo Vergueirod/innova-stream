@@ -62,3 +62,49 @@ class TestUpdateCategory:
     def test_cannot_update_category_with_empty_name(self):
         with pytest.raises(ValueError, match="name must have less than 256 characters"):
             Category(name="")   
+
+class TestActivate:
+    def test_activate_inactive_category(self):
+        category = Category(
+            name="Move", 
+            description="All moves",
+            is_active = False,
+            )
+
+        category.activate()
+
+        assert category.is_active is True
+
+    def test_activate_active_category(self):
+        category = Category(
+            name="Move", 
+            description="All moves",
+            is_active = True,
+            )
+
+        category.activate()
+
+        assert category.is_active is True
+
+class TestDesactivate:
+    def test_inactivate_inactive_category(self):
+        category = Category(
+            name="Move", 
+            description="All moves",
+            is_active = False,
+            )
+
+        category.desactivateactivate()
+
+        assert category.is_active is True
+
+    def test_inactivate_activate_category(self):
+        category = Category(
+            name="Move", 
+            description="All moves",
+            is_active = True,
+            )
+
+        category.desactivate()
+
+        assert category.is_active is True
