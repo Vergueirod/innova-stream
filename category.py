@@ -25,6 +25,9 @@ class Category:
     def validate(self):
         if len(self.name) >= 255:
             raise ValueError("name must have less than 256 characters")
+        
+        if not self.name:
+             raise ValueError("name must have less than 256 characters")
 
     def __str__(self):
             return f"{self.name} - {self.description} - {self.is_active}"
