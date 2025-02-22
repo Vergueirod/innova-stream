@@ -1,5 +1,4 @@
 import pytest
-import unittest
 import uuid
 from uuid import UUID, uuid4
 from category import Category
@@ -40,6 +39,3 @@ class TestCategory(unittest.TestCase):
         assert category.name == "Move"
         assert category.description == "All moves"
         assert category.is_active == False    
-
-if __name__ == "__main__":
-    unittest.main()
