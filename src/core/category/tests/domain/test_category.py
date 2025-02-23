@@ -41,7 +41,7 @@ class TestCategory:
         assert category.is_active == False 
 
     def test_cannot_create_category_with_empty_name(self):
-        with pytest.raises(ValueError, match="name must have less than 256 characters"):
+        with pytest.raises(ValueError, match="name cannot be empty"):
             Category(name="")   
 
 class TestUpdateCategory:
@@ -60,7 +60,7 @@ class TestUpdateCategory:
             category.update_category(name="a" * 256, description="All moves")
 
     def test_cannot_update_category_with_empty_name(self):
-        with pytest.raises(ValueError, match="name must have less than 256 characters"):
+        with pytest.raises(ValueError, match="name cannot be empty"):
             Category(name="")   
 
 class TestActivate:

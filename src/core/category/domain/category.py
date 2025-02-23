@@ -27,7 +27,7 @@ class Category:
             raise ValueError("name must have less than 256 characters")
         
         if not self.name:
-             raise ValueError("name must have less than 256 characters")
+             raise ValueError("name cannot be empty")
 
     def __str__(self):
             return f"{self.name} - {self.description} - {self.is_active}"
