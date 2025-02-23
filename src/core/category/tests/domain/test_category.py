@@ -1,7 +1,7 @@
 import pytest
 import uuid
 from uuid import UUID, uuid4
-from category import Category
+from src.core.category.domain.category import Category
 
 class TestCategory:
 
@@ -94,9 +94,9 @@ class TestDesactivate:
             is_active = False,
             )
 
-        category.desactivateactivate()
+        category.desactivate()
 
-        assert category.is_active is True
+        assert category.is_active is False
 
     def test_inactivate_activate_category(self):
         category = Category(
@@ -107,4 +107,4 @@ class TestDesactivate:
 
         category.desactivate()
 
-        assert category.is_active is True
+        assert category.is_active is False
