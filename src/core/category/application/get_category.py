@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from src.core.category.domain.category import Category
 from src.core.category.application.exceptions import InvalidCategoryData
 from src.core.category.application.category_repository import CategoryRepository
-
+from src.core.category.application.exceptions import CategoryNotFound
 
 @dataclass
 class GetCategoryRequest:
@@ -22,6 +22,9 @@ class GetCategory:
 
     def execute(self,request: GetCategoryRequest) -> GetCategoryResponse:
             category = self.repository.get_by_id(id=request.id)
+
+            if category is None:
+                 raise CategoryNotFound(f"Category with {request.id} not found")
 
             return GetCategoryResponse(
                  id=category.id,
